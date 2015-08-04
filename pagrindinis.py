@@ -8,7 +8,7 @@ class calculus (wx.Frame):
         panel = wx.Panel(self) #sukuriama panele
 
         status = self.CreateStatusBar()
-        menubar = wx.MenuBar()
+        menubar = wx.MenuBar()  
         pasirinkimai = wx.Menu()
         pasirinkimai.Append(wx.NewId(), 'Get resistor color-code',
                             "In this mode you will find out the code of exact value.")
