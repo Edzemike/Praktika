@@ -7,7 +7,7 @@ class calculus (wx.Frame):
         wx.Frame.__init__(self, parent, id, 'Resistance calculator', size=(500, 200)) #sukuriamas langas
         panel = wx.Panel(self) #sukuriama panele
 
-        status = self.CreateStatusBar()
+        status = self.CreateStatusBar() 
         menubar = wx.MenuBar()
         pasirinkimai = wx.Menu()
         pasirinkimai.Append(wx.NewId(), 'Get resistor color-code',
