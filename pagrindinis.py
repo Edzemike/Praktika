@@ -1,42 +1,55 @@
 __author__ = 'Edita'
-import wx
 
-class calculus (wx.Frame):
+from kivy.app import App
+from kivy.uix.tabbedpanel import TabbedPanel
+from kivy.uix.floatlayout import FloatLayout
+from kivy.lang import Builder
 
-    def __init__(self, parent, id):
-        wx.Frame.__init__(self, parent, id, 'Resistance calculator', size=(500, 200)) #sukuriamas langas
-        panel = wx.Panel(self) #sukuriama panele
+Builder.load_string("""
 
-        status = self.CreateStatusBar()
-        menubar = wx.MenuBar()  
-        pasirinkimai = wx.Menu()
-        pasirinkimai.Append(wx.NewId(), 'Get resistor color-code',
-                            "In this mode you will find out the code of exact value.")
-        menubar.Append(pasirinkimai, 'Change calculator mode')
-        self.SetMenuBar(menubar)
+<pirmas>:
+    canvas:
+        Color:
+            rgba: (1, 1, 1, .8)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    size_hint: 1, 1 #procentai: 1 - 100%, .5 - 50%
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    do_default_tab: False
 
-        mygtukas = wx.Button(panel, label="4 Band-Code", pos=(15, 20), size = (76, 30)) #sukuriamas mygtukas
-        mygtukas1 = wx.Button(panel, label="5 Band-Code", pos=(90, 20), size = (76, 30)) #sukuriamas mygtukas
-        mygtukas2 = wx.Button(panel, label="6 Band-Code", pos=(165, 20), size = (76, 30)) #sukuriamas mygtukas
-        self.Bind(wx.EVT_BUTTON, self.calcfour, mygtukas) #mygtukui priskiriama funkcija
-        self.Bind(wx.EVT_BUTTON, self.calcfive, mygtukas1)
-        self.Bind(wx.EVT_BUTTON, self.calcsix, mygtukas2)
-        self.Bind(wx.EVT_CLOSE, self.closewindow) #mygtukui x priskiriama uzdarymo funkcija
+    TabbedPanelItem:
+        canvas:
+            Color:
+                rgba: (1, 1, 1, .6)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        text: 'Value'
+        RstDocument:
+            text:
+                "Calculates the resistance value according to color-code."
+    TabbedPanelItem:
+        canvas:
+            Color:
+                rgba: (1, 1, 1, .6)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        text: 'Colour'
+        RstDocument:
+            text:
+                "Calculates the color-code according to the value of the resistance."
+""")
 
-    def calcfour (self, event):
-        pass
 
-    def calcfive (self, event):
-        pass
+class pirmas(TabbedPanel):
+    pass
 
-    def calcsix (self, event):
-        pass
 
-    def closewindow (self, event):
-        self.Destroy()
+class TabbedPanelApp(App):
+    def build(self):
+        return pirmas()
 
 if __name__ == '__main__':
-    app = wx.PySimpleApp()
-    frame = calculus(parent=None, id=-1)
-    frame.Show()
-    app.MainLoop()
+    TabbedPanelApp().run()
