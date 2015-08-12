@@ -1,0 +1,35 @@
+
+<Tabbedpanel>:
+    canvas:
+        Color:
+            rgba: (1, 1, 1, .7)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    size_hint: 1, 1 #procentai: 1 - 100%, .5 - 50%
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    do_default_tab: False
+
+    TabbedPanelItem:
+        text: 'Value'
+        canvas:
+            Color:
+                rgba: (1, 1, 1, .6)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        RstDocument:
+            text:
+                "Calculates the resistance value according to color-code."
+    TabbedPanelItem:
+        text: 'Colors'
+        canvas:
+            Color:
+                rgba: (1, 1, 1, .6)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        RstDocument:
+            text:
+                "Calculates the color-code according to the value of the resistance."
