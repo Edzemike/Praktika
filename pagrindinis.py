@@ -6,7 +6,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 import kivy.uix.image
 from kivy.lang import Builder
-
+import kivy.uix.gridlayout
 Builder.load_file("pagr.kv")
 
 

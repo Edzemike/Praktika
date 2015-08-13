@@ -1,8 +1,13 @@
 
+<Mygtukas@Button>
+    text_size: self.size
+    font_size: '25sp'
+    markup: True
+
 <Tabbedpanel>:
     canvas:
         Color:
-            rgba: (1, 1, 1, .7)
+            rgba: 1, 1, 1, .7
         Rectangle:
             size: self.size
             pos: self.pos
@@ -14,32 +19,34 @@
         text: 'Value'
         canvas:
             Color:
-                rgba: (1, 1, 1, .6)
+                rgba: 1, 1, 1, .6
             Rectangle:
                 size: self.size
                 pos: self.pos
-        BoxLayout:
+        GridLayout:
+            cols: 3
+
             RstDocument:
                 text:
                     "Calculates the resistance value according to color-code."
-            Button:
+            Mygtukas:
                 text:
                     "4-band-code"
-            Button:
+            Mygtukas:
                 text:
                     "5-band-code"
-            Button:
+            Mygtukas:
                 text:
                     "5-band-code"
             Image:
                 source:"resistor.png"
-                #y:
-                #x:
+
+
     TabbedPanelItem:
         text: 'Colors'
         canvas:
             Color:
-                rgba: (1, 1, 1, .6)
+                rgba: 1, 1, 1, .6
             Rectangle:
                 size: self.size
                 pos: self.pos
