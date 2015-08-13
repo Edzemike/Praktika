@@ -9,12 +9,15 @@ from kivy.lang import Builder
 
 Builder.load_file("pagr.kv")
 
+
 class Tabbedpanel (TabbedPanel):
     pass
+
 
 class MainApp(App):
     def build(self):
         return Tabbedpanel()
+
 
 if __name__ == '__main__':
     MainApp().run()

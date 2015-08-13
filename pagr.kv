@@ -18,10 +18,23 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-
-        RstDocument:
-            text:
-                "Calculates the resistance value according to color-code."
+        BoxLayout:
+            RstDocument:
+                text:
+                    "Calculates the resistance value according to color-code."
+            Button:
+                text:
+                    "4-band-code"
+            Button:
+                text:
+                    "5-band-code"
+            Button:
+                text:
+                    "5-band-code"
+            Image:
+                source:"resistor.png"
+                #y:
+                #x:
     TabbedPanelItem:
         text: 'Colors'
         canvas:
@@ -30,6 +43,7 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-        RstDocument:
-            text:
-                "Calculates the color-code according to the value of the resistance."
+        BoxLayout:
+            RstDocument:
+                text:
+                    "Calculates the color-code according to the value of the resistance."
