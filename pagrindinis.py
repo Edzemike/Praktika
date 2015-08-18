@@ -1,3 +1,5 @@
+from argparse import _ActionsContainer
+
 __author__ = 'Edita'
 
 from kivy.app import App
@@ -11,16 +13,31 @@ import kivy.uix.gridlayout
 
 Builder.load_file("pagr.kv")
 
+
 class Tabbedpanel (TabbedPanel):
+
+    def visimygtukai(self, btn1, btn2, btn3):
+        btn1 = self.keturiosj
+        btn2 = self.penkiosj
+        btn3 = self.sesiosj
+        btnres1 = self.VarzMyg1
+        btnres2 = self.VarsMyg2
+        btnres3 = self.Varzmyg3
+        btnres4 = self.VarzMyg4
+        btnres5 = self.VarzMyg5
+        btnres6 = self.VarzMyg6
+
     def fourbandcode(self):
 
-        b1 = Button(text=("select"), pos_hint=(.6,  .6), size_hint = ( .1, .2))
         print("hi")
-        return (self)
+        return self
+
     def fivebandcode (self):
         print("five!")
+
     def sixbandcode (self):
         print("oh no! You have six fingers!")
+
     def rezultatas (lst):
         lst = ["a", "b", "c"]#sudarys is mygtuku gauti duomenys
         teksts = ' / '.join(lst)
