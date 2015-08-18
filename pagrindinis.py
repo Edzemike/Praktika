@@ -2,20 +2,36 @@ __author__ = 'Edita'
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
+from kivy.uix.widget import Widget
+from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.label import Label
 import kivy.uix.image
 from kivy.lang import Builder
 import kivy.uix.gridlayout
+
 Builder.load_file("pagr.kv")
 
-
 class Tabbedpanel (TabbedPanel):
-    pass
+    def fourbandcode(self):
+
+        b1 = Button(text=("select"), pos_hint=(.6,  .6), size_hint = ( .1, .2))
+        print("hi")
+        return (self)
+    def fivebandcode (self):
+        print("five!")
+    def sixbandcode (self):
+        print("oh no! You have six fingers!")
+    def rezultatas (lst):
+        lst = ["a", "b", "c"]#sudarys is mygtuku gauti duomenys
+        teksts = ' / '.join(lst)
+        return teksts
 
 
 class MainApp(App):
     def build(self):
+        return Tabbedpanel()
+
+    def dictionaries (colortabledigits, colortablemultiplier, colortabletolerance, colortabletemp):
         colortabledigits = {"Black": "0", "Brown": "1", "Red": "2", "Orange": "3", "Yellow": "4", "Green": "5",
                     "Blue": "6", "Violet": "7", "Grey": "8", "White": "9"} # 4BandCode pirmos dvi juosteles,
                                                                     # 5 ir 6 bandCode - pirmos trys juosteles
@@ -28,12 +44,6 @@ class MainApp(App):
 
         colortabletemp = {"Brown3": "100 ppm", "Red3": "50 ppm", "Orange3": "15 ppm", "Yellow": "25 ppm"}
                                                                                             # tik 6BandCodre 6j.
-
-
-
-        return Tabbedpanel()
-
-
 
 if __name__ == '__main__':
     MainApp().run()
