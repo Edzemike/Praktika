@@ -17,7 +17,7 @@ class Tabbedpanel(TabbedPanel, GridLayout):
     def popupwindow1(self):
         #spalv = '0, 0, 0, 1'
         layout = GridLayout(cols=4)
-        background_color=(0, 0, 0, 1)
+        #background_color=(0, 0, 0, 1)
 
         myg1 = layout.add_widget(Button(background_color=(0, 0, 0, 1), background_normal=''))   # juodas
         myg2 = layout.add_widget(Button(background_color=(.4, .2, 0, 1), background_normal=''))   # rudas
@@ -34,7 +34,7 @@ class Tabbedpanel(TabbedPanel, GridLayout):
                       content=layout,
                       size_hint=(None, None), size=(200, 200))
         popup.open()
-        return background_color
+        #return background_color
 
     def myg1(self):
        background_color=(0, 0, 0, 1)
@@ -114,7 +114,7 @@ class ResistanceCalculatorApp(App):
     def build(self):
         return Tabbedpanel()
 
-    def dictionaries(self):
+    '''def dictionaries(self):
         colortabledigits = {"Black": "0", "Brown": "1", "Red": "2", "Orange": "3", "Yellow": "4", "Green": "5",
                             "Blue": "6", "Violet": "7", "Grey": "8", "White": "9"}  # 4BandCode pirmos dvi juosteles,
         # 5 ir 6 bandCode - pirmos trys juosteles
@@ -127,7 +127,7 @@ class ResistanceCalculatorApp(App):
                                "Blue2": "0.25%", "Violet2": "0.1%", "Grey2": "0.05%"}  # 4j. -4 BC, 5j. - 5,5BC
 
         colortabletemp = {"Brown3": "100 ppm", "Red3": "50 ppm", "Orange3": "15 ppm", "Yellow": "25 ppm"}
-        # tik 6BandCodre 6j.
+        # tik 6BandCodre 6j.'''
 
 
 if __name__ == '__main__':

@@ -85,14 +85,14 @@
                 #text: "1"
                 pos_hint: {"x": 0.35, 'y': .455}
                 background_normal: ''
-                on_press: VarzMyg1.background_color=root.popupwindow1()
+                #on_press: VarzMyg1.background_color=root.popupwindow1()
+                on_press: root.popupwindow1()
 
 
             MygtukasV:
                 id: VarzMyg2
                 #text: "2"
                 pos_hint: {"x": 0.42, 'y': .455}
-
                 background_normal: ''
                 on_press: root.popupwindow1()
 
@@ -101,7 +101,6 @@
                 id: VarzMyg3
                 #text: "3"
                 pos_hint: {"x": 0.49, 'y': .455}
-
                 background_normal: ''
                 on_press: root.popupwindow1()
 
@@ -109,7 +108,6 @@
                 id: VarzMyg4
                 #text: "4"
                 pos_hint: {"x": 0.56, 'y': .455}
-
                 background_normal: ''
                 on_press: root.popupwindow2()
 
@@ -117,7 +115,6 @@
                 id: VarzMyg5
                 #text: "5"
                 pos_hint: {"x": 0.63, 'y': .455}
-
                 background_normal: ''
                 on_press: root.popupwindow3()
 
@@ -125,10 +122,9 @@
                 id: VarzMyg6
                 #text: "6"
                 pos_hint: {"x": 0.7, 'y': .455}
-
                 background_normal: ''
                 on_press: root.popupwindow4()
-
+#----------------------------------------------------antras-tabas--------------------------------------------------
     TabbedPanelItem:
         text: 'Colors'
         canvas:
@@ -137,10 +133,34 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-        BoxLayout:
+        FloatLayout:
             RstDocument:
-                text:
-                    "Calculates the color-code according to the value of the resistance."
+                text: "Calculates the color-code according to the value of the resistance."
+                size_hint: 1, .1
+
+            Mygtukas:
+                id: keturiosjuo
+                text: "4-band-code"
+                pos_hint: {"x": 0, 'y': .9}
+
+            Mygtukas:
+                id: penkiosjuo
+                text: "5-band-code"
+                pos_hint: {"x": .2, 'y': .9}
+
+            Image:
+                allow_stretch: True
+                source: "Resistor_symbol.png"
+                pos_hint: {"x": 0.25, 'y': .25}
+                size_hint: .6, .6
+
+            Label:
+                background_color: 1, 1, 1, .3
+                text: 'tralialia'
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .45, "y": .25}
+
     TabbedPanelItem:
         text: 'Voltage Divider'
         canvas:
@@ -149,8 +169,18 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-        RstDocument:
-            text: "Voltage Divider."
+        FloatLayout:
+            Image:
+                allow_stretch: True
+                source: "Resistive_divider2.svg.png"
+                pos_hint: {"x": .25, "y": .25}
+                size_hint: .6, .6
+            Label:
+                background_color: 1, 1, 1, .3
+                text: "Voltage Divider."
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": 0, "y": 0}
 
     TabbedPanelItem:
         text: 'LM 317'
@@ -160,5 +190,15 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-        RstDocument:
-            text: "LM 317 Voltage calculator"
+        FloatLayout:
+            Image:
+                allow_stretch: True
+                source: "LM317.png"
+                pos_hint: {"x": .25, "y": .25}
+                size_hint: .6, .6
+            Label:
+                background_color: 1, 1, 1, .3
+                text: "LM 317 Voltage calculator"
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": 0, "y": 0}
