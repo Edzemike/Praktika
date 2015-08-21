@@ -139,12 +139,12 @@
                 size_hint: 1, .1
 
             Mygtukas:
-                id: keturiosjuo
+                id: keturiosjuost
                 text: "4-band-code"
                 pos_hint: {"x": 0, 'y': .9}
 
             Mygtukas:
-                id: penkiosjuo
+                id: penkiosjuost
                 text: "5-band-code"
                 pos_hint: {"x": .2, 'y': .9}
 
@@ -176,11 +176,63 @@
                 pos_hint: {"x": .25, "y": .25}
                 size_hint: .6, .6
             Label:
+                id: lbl_Vin
                 background_color: 1, 1, 1, .3
-                text: "Voltage Divider."
+                text: ""
                 base_font_size: '30sp'
                 size_hint: .15, .1
-                pos_hint: {"x": 0, "y": 0}
+                pos_hint: {"x": .28, "y": .76}
+            Label:
+                id: lbl_R1
+                background_color: 1, 1, 1, .3
+                text: ""
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .35, "y": .64}
+            Label:
+                id: lbl_R2
+                background_color: 1, 1, 1, .3
+                text: ""
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .35, "y": .4}
+            Label:
+                id: lbl_Vout
+                background_color: 1, 1, 1, .3
+                text: "voltage"+"V"
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .68, "y": .51}
+            TextInput:
+                id: Vin_VD
+                text: ''
+                multiline: False
+                size_hint: .15, .06
+                pos_hint: {"x": .02, "y": .7}
+            TextInput:
+                id: R1_VD
+                text: ''
+                multiline: False
+                size_hint: .15, .06
+                pos_hint: {"x": .02, "y": .5}
+            TextInput:
+                id: R2_VD
+                text: ''
+                multiline: False
+                size_hint: .15, .06
+                pos_hint: {"x": .02, "y": .3}
+            Button:
+                id: btn_calc
+                text: "Submit"
+                font_size: '20sp'
+                color: 1, 1, 1, .8
+                size_hint: 0.2, 0.1
+                pos_hint: {"x": .02, "y": .1}
+                on_press: lbl_Vin.text = Vin_VD.text+"V"
+                on_press: lbl_R1.text = R1_VD.text+"Ω"
+                on_press: lbl_R2.text = R2_VD.text+"Ω"
+                on_press: root.textinis(Vin_VD.text, R1_VD.text, R2_VD.text)
+                #on_press: root.textinis()
 
     TabbedPanelItem:
         text: 'LM 317'
@@ -194,11 +246,49 @@
             Image:
                 allow_stretch: True
                 source: "LM317.png"
-                pos_hint: {"x": .25, "y": .25}
-                size_hint: .6, .6
+                pos_hint: {"x": .2, "y": .2}
+                size_hint: .7, .7
             Label:
+                id: r1
                 background_color: 1, 1, 1, .3
-                text: "LM 317 Voltage calculator"
+                text: "R1"
                 base_font_size: '30sp'
                 size_hint: .15, .1
-                pos_hint: {"x": 0, "y": 0}
+                pos_hint: {"x": .64, "y": .59}
+            Label:
+                id: r2
+                background_color: 1, 1, 1, .3
+                text: "R2"
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .64, "y": .4}
+            Label:
+                id: volt
+                background_color: 1, 1, 1, .3
+                text: "Vout"
+                base_font_size: '30sp'
+                size_hint: .15, .1
+                pos_hint: {"x": .73, "y": .7}
+            TextInput:
+                id: R1_LM
+                text: ''
+                multiline: False
+                size_hint: .15, .06
+                pos_hint: {"x": .02, "y": .5}
+            TextInput:
+                id: R2_LM
+                text: ''
+                multiline: False
+                size_hint: .15, .06
+                pos_hint: {"x": .02, "y": .3}
+            Button:
+                id: sub
+                text: "Submit"
+                font_size: '20sp'
+                color: 1, 1, 1, .8
+                size_hint: 0.2, 0.1
+                pos_hint: {"x": .02, "y": .1}
+                on_press: r1.text = R1_LM.text+"Ω"
+                on_press: r2.text = R2_LM.text+"Ω"
+                #on_press: root.textinis(Vin_VD.text, R1_VD.text, R2_VD.text)
+                #on_press: root.textinis()

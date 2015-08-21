@@ -5,8 +5,10 @@ from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.lang import Builder
-
+from kivy.uix.textinput import TextInput
+from kivy.uix.label import Label
 
 Builder.load_file("pagr.kv")
 
@@ -108,6 +110,15 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         teksts = ' / '.join(lst)
         return teksts
 
+#------------------3-tabas------------
+
+    def textinis (vin_VD, r1_VD, r2_VD):
+        vin = float(vin_VD)
+        r1 = float(r1_VD)
+        r2 = float(r2_VD)
+        vout = (r2/(r1+r2))*vin
+        rez = str(vout)
+        return rez
 
 class ResistanceCalculatorApp(App):
 
