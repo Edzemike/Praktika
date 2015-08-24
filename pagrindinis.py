@@ -17,9 +17,6 @@ lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, backgr
 text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
 
 
-
-
-
 class Tabbedpanel(TabbedPanel, GridLayout):
     def popupwindow1(self):
         # spalv = '0, 0, 0, 1'
@@ -127,8 +124,8 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         except:
             if test is not int and test != '':
                 popup = Popup(title='Eror:',
-                            content=Label(text="Enter only numbers"),
-                            size_hint=(None, None), size=(200, 200))
+                              content=Label(text="Enter only numbers"),
+                              size_hint=(None, None), size=(200, 200))
                 popup.open()
 
     def volt_div(*args):
@@ -142,7 +139,7 @@ class Tabbedpanel(TabbedPanel, GridLayout):
             r1 = float(lst[2])
             r2 = float(lst[3])
             vout = round(((r2 / (r1 + r2)) * vin), 2)
-            rez = str(vout)+"V"
+            rez = str(vout) + "V"
         return rez
 
         # ---------------4-tabas----------------
@@ -156,9 +153,10 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         else:
             r1 = float(lst[1])
             r2 = float(lst[2])
-            vout = round((1.25*(1+r1/r2)), 2)
-            rez1 = str(vout)+"V"
+            vout = round((1.25 * (1 + r1 / r2)), 2)
+            rez1 = str(vout) + "V"
         return rez1
+
 
 class ResistanceCalculatorApp(App):
     def build(self):
