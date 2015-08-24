@@ -17,11 +17,7 @@ lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, backgr
 text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
 
 
-def on_text(self, *args):
-    print('new value is ', text1.text)
-    Clipboard.put(text1.text, 'UTF8_STRING')
-    lbl1.text = Clipboard.get('UTF8_STRING')
-    self.add_widget(lbl1)
+
 
 
 class Tabbedpanel(TabbedPanel, GridLayout):
@@ -128,20 +124,15 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         test = lst[1]
         try:
             x = int(test)
-            print x
         except:
-            #naujas = test
             if test is not int and test != '':
                 popup = Popup(title='Eror:',
-                              content=Label(text="Enter only numbers"),
-                              size_hint=(None, None), size=(200, 200))
+                            content=Label(text="Enter only numbers"),
+                            size_hint=(None, None), size=(200, 200))
                 popup.open()
-                #if naujas < test:
-                 #   popup.dismiss()
 
     def volt_div(*args):
         lst = list()
-
         for arg in args:
             lst.append(arg)
         if lst[1] == '' or lst[2] == '' or lst[3] == '':
