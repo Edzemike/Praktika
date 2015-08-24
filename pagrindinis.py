@@ -8,9 +8,22 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.lang import Builder
 from kivy.uix.textinput import TextInput
+from kivy.core.clipboard import Clipboard
 from kivy.uix.label import Label
 
 Builder.load_file("pagr.kv")
+
+lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, background_color=(1, 1, 1, .3))
+text1 = TextInput(text='', multiline=False, size_hint=(.15, .06),pos_hint={"x": .02, "y": .7})
+
+def on_text(self, *args):
+        print('new value is ', text1.text)
+        Clipboard.put(text1.text, 'UTF8_STRING')
+        lbl1.text = Clipboard.get('UTF8_STRING')
+        self.add_widget(lbl1)
+
+
+
 
 
 class Tabbedpanel(TabbedPanel, GridLayout):
@@ -110,13 +123,49 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         teksts = ' / '.join(lst)
         return teksts
 
-#------------------3-tabas------------
+    #------------------3-tabas------------
 
-    def textinis (vin_VD, r1_VD, r2_VD):
-        vin = float(vin_VD)
-        r1 = float(r1_VD)
-        r2 = float(r2_VD)
-        vout = (r2/(r1+r2))*vin
+    '''def text_inp_Nr1 (self):
+        root = TabbedPanel()
+        layout = FloatLayout()
+        text1.bind(text=on_text)
+        lbl1.text = Clipboard.get('UTF8_STRING')
+        layout.add_widget(lbl1)
+        layout.add_widget(text1)
+        label = str(text1.text)
+        root.add_widget(layout)
+        return root'''
+
+    def input_1(*args):
+        for arg in args:
+            vin = str(arg)
+        print vin
+        return vin
+
+    def input_2(*args):
+        for arg in args:
+            r1 = str(arg)
+        print r1
+        return r1
+
+    def input_3(*args):
+        for arg in args:
+            r2 = str(arg)
+        print r2
+        return r2
+
+    def textinis (*args):
+        lst = list()
+        nlist = list()
+        for arg in args:
+            print arg
+            lst.append(arg)
+        print lst
+        vin = float(lst[1])
+        r1 = float(lst[2])
+        r2 = float(lst[3])
+        print vin, r1, r2
+        vout = round(((r2/(r1+r2))*vin), 2)
         rez = str(vout)
         return rez
 
