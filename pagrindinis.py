@@ -111,6 +111,154 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         teksts = ' / '.join(lst)
         return teksts
 
+    # --------------------------------2-tabas------------------------------
+
+    def find_out_values(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        if lst[1] != '':
+            if lst[1].startswith('-'):
+                popup = Popup(title='Eror:',
+                              content=Label(text="Resistance can not\nbe negative"),
+                              size_hint=(None, None), size=(200, 200))
+                popup.open()
+            sk = float(lst[1])
+            if sk < 1:
+                print 'pirmas'
+                daugiklis = 0.01
+                sk = str(int(sk * 100))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 10:
+                print 'antras'
+                daugiklis = 0.1
+                sk = str(int(sk * 10))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 100:
+                print 'trecias'
+                daugiklis = 1
+                sk = str(int(sk))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 1000:
+                print 'ketvirtas'
+                daugiklis = 10
+                sk = str(int(sk / 10))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 10000:
+                print 'penktas'
+                daugiklis = 100
+                sk = str(int(sk / 100))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 100000:
+                print 'sestas'
+                daugiklis = 1000
+                sk = str(int(sk / 1000))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 1000000:
+                print 'septintas'
+                daugiklis = 10000
+                sk = str(int(sk / 10000))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 10000000:
+                print 'astuntas'
+                daugiklis = 100000
+                sk = str(int(sk / 100000))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 100000000:
+                print 'devintas'
+                daugiklis = 1000000
+                sk = str(int(sk / 1000000))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk < 1000000000:
+                print 'desimtas'
+                daugiklis = 10000000
+                sk = str(int(sk / 10000000))
+                s1 = sk[0]
+                s2 = sk[1]
+            elif sk >= 1000000000:
+                popup = Popup(title='Eror:',
+                              content=Label(text="Too large number"),
+                              size_hint=(None, None), size=(200, 200))
+                popup.open()
+            ret_daugiklis = 'd' + str(daugiklis)
+            ret_s1 = 's1' + str(s1)
+            ret_s2 = 's2' + str(s2)
+            print ret_daugiklis, ' ', ret_s1, ' ', ret_s2
+            ret_list = list()
+            ret_list.append(ret_daugiklis)
+            ret_list.append(ret_s1)
+            ret_list.append(ret_s2)
+            te = ' '.join(ret_list)
+            print te
+            return te
+
+    def s1_color(*args):
+        arglst = list()
+        for arg in args:
+            arglst.append(arg)
+        tarp = arglst[1]
+
+        visiTrys = tarp.split()
+        juost_1 = visiTrys[1]
+        reiksme = juost_1[2:]  # slicing
+        reiksme = str(reiksme)
+        print reiksme, ' juosta 1'
+
+        colors = {'0': (0, 0, 0, 1), '1': (.4, .2, 0, 1), '2': (1, 0, 0, 1), '3': (1, .5, 0, 1), '4': (1, 1, 0, 1),
+                  '5': (0, .6, 0, 1), '6': (0, 0, 1, 1), '7': (.4, 0, .4, 1), '8': (1, 1, 1, .5), '9': (1, 1, 1, 1)}
+        for key, value in colors.iteritems():
+            if key == reiksme:
+                backgroundColor = value
+        print colors
+        print backgroundColor
+        return backgroundColor
+
+    def s2_color(*args):
+        arglst = list()
+        for arg in args:
+            arglst.append(arg)
+        tarp = arglst[1]
+        visiTrys = tarp.split()
+        juost_2 = visiTrys[2]
+        reiksme = str(juost_2[2:])
+        print reiksme, ' juosta 2'
+        colors = {'0': (0, 0, 0, 1), '1': (.4, .2, 0, 1), '2': (1, 0, 0, 1), '3': (1, .5, 0, 1), '4': (1, 1, 0, 1),
+                  '5': (0, .6, 0, 1), '6': (0, 0, 1, 1), '7': (.4, 0, .4, 1), '8': (1, 1, 1, .5), '9': (1, 1, 1, 1)}
+        for key, value in colors.iteritems():
+            if key == reiksme:
+                backgroundColor = value
+        print colors
+        print backgroundColor
+        return backgroundColor
+
+    def daugiklis_color(*args):
+        arglst = list()
+        for arg in args:
+            arglst.append(arg)
+        tarp = arglst[1]
+        visiTrys = tarp.split()
+        daugiklis = visiTrys[0]
+        reiksme = str(daugiklis[1:])
+        print reiksme, ' daugiklis'
+        colors = {'1': (0, 0, 0, 1), '10': (.4, .2, 0, 1), '100': (1, 0, 0, 1), '1000': (1, .5, 0, 1),
+                  '10000': (1, 1, 0, 1), '100000': (0, .6, 0, 1), '1000000': (0, 0, 1, 1),
+                  '10000000': (.4, 0, .4, 1), '0.01': (1, 1, 1, .7), '0.1': (.84, .64, .125, 1)}
+        for key, value in colors.iteritems():
+            if key == reiksme:
+                backgroundColor = value
+        print colors
+        print backgroundColor
+        return backgroundColor
+
     # ------------------3-tabas------------
 
     def inp_testing(*args):
@@ -118,6 +266,7 @@ class Tabbedpanel(TabbedPanel, GridLayout):
 
         for arg in args:
             lst.append(arg)
+
         test = lst[1]
         try:
             x = int(test)
