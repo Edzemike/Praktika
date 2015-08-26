@@ -16,8 +16,8 @@ Builder.load_file("pagr.kv")
 #text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
 
 
-class Tabbedpanel(TabbedPanel, GridLayout):
-    def popupwindow1(self):
+class Tabbedpanel(TabbedPanel):
+    '''def popupwindow1(self):
         # spalv = '0, 0, 0, 1'
         layout = GridLayout(cols=4)
         # background_color=(0, 0, 0, 1)
@@ -38,15 +38,6 @@ class Tabbedpanel(TabbedPanel, GridLayout):
                       size_hint=(None, None), size=(200, 200))
         popup.open()
         # return background_color
-
-    def myg1(self):
-        background_color = (0, 0, 0, 1)
-        print background_color
-        return background_color
-
-    def myg12color(self):
-        Background_Color = (1, 1, 1, 1)
-        return Background_Color
 
     def popupwindow2(self):
         layout = GridLayout(cols=4)
@@ -103,12 +94,72 @@ class Tabbedpanel(TabbedPanel, GridLayout):
                       size_hint=(None, None), size=(150, 150))
         popup.open()
 
-        return sk
+        return sk'''
 
-    def rezultatas(lst):
-        lst = ["a", "b", "c"]  # sudarys is mygtuku gauti duomenys
-        teksts = ' / '.join(lst)
-        return teksts
+    def pirma_juostele(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        n1 = str(lst[1])
+        print n1
+        return n1
+
+    def antra_juostele(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        n2 = str(lst[1])
+        print n2
+        return n2
+
+    def trecia_juostele(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        n3 = str(lst[1])
+        print n3
+        return n3
+
+    def ketvirta_juostele(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        n4 = str(lst[1])
+        print n4
+        return n4
+
+    def rezultatas_4band(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        skaicius = lst[1]
+        n1 = skaicius[0]
+        n2 = skaicius[1]
+        n4 = float(skaicius[2:])
+        n12 = int(n1 + n2)
+        rez = n12 * n4
+        if rez < 10:
+            rez = str(rez)
+        else:
+            rez = str(int(rez))
+        return rez
+
+    def rezultatas_56band(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        skaicius = lst[1]
+        n1 = skaicius[0]
+        n2 = skaicius[1]
+        n3 = skaicius[2]
+        n4 = float(skaicius[3:])
+        n123 = int(n1 + n2+n3)
+        rez = n123 * n4
+        if rez < 100:
+            rez = str(rez)
+        else:
+            rez = str(int(rez))
+        return rez
 
     # --------------------------------2-tabas------------------------------
 
