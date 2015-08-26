@@ -1,20 +1,19 @@
 __author__ = 'Edita'
 
+from kivy.lang import Builder
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.popup import Popup
-from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.floatlayout import FloatLayout
-from kivy.lang import Builder
-from kivy.uix.textinput import TextInput
-from kivy.core.clipboard import Clipboard
+from kivy.uix.button import Button
 from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+
 
 Builder.load_file("pagr.kv")
 
-lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, background_color=(1, 1, 1, .3))
-text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
+#lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, background_color=(1, 1, 1, .3))
+#text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
 
 
 class Tabbedpanel(TabbedPanel, GridLayout):
@@ -113,10 +112,11 @@ class Tabbedpanel(TabbedPanel, GridLayout):
 
     # --------------------------------2-tabas------------------------------
 
-    def find_out_values(*args):
+    def values_4band(*args):
         lst = list()
         for arg in args:
             lst.append(arg)
+
         if lst[1] != '':
             if lst[1].startswith('-'):
                 popup = Popup(title='Eror:',
@@ -199,6 +199,124 @@ class Tabbedpanel(TabbedPanel, GridLayout):
             ret_list.append(ret_s2)
             te = ' '.join(ret_list)
             print te
+            return te  #
+
+    def values_5band(*args):
+        lst = list()
+        for arg in args:
+            lst.append(arg)
+        if lst[1] != '':
+            if lst[1].startswith('-'):
+                popup = Popup(title='Eror:',
+                              content=Label(text="Resistance can not\nbe negative"),
+                              size_hint=(None, None), size=(200, 200))
+                popup.open()
+            sk = float(lst[1])
+
+            def priskyrimai(sk, s1=0, s2=0, s3=0):
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+                return s1, s2, s3
+
+            if sk < 0.1:
+                daugiklis = 0.01
+                sk = str(int(sk*100))
+                s1 = 0,
+                s2 = 0,
+                s3 = sk[0]
+            if sk < 1:
+                daugiklis = 0.01
+                sk = str(int(sk*100))
+                s1 = 0
+                s2 = sk[0]
+                s3 = sk[1]
+            elif sk < 10:
+                print 'pirmas'
+                daugiklis = 0.01
+                sk = str(int(sk * 100))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 100:
+                print 'antras'
+                daugiklis = 0.1
+                sk = str(int(sk * 10))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 1000:
+                print 'trecias'
+                daugiklis = 1
+                sk = str(int(sk))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 10000:
+                print 'ketvirtas'
+                daugiklis = 10
+                sk = str(int(sk / 10))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 100000:
+                print 'penktas'
+                daugiklis = 100
+                sk = str(int(sk / 100))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 1000000:
+                print 'sestas'
+                daugiklis = 1000
+                sk = str(int(sk / 1000))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 10000000:
+                print 'septintas'
+                daugiklis = 10000
+                sk = str(int(sk / 10000))
+                priskyrimai(sk)
+            elif sk < 100000000:
+                print 'astuntas'
+                daugiklis = 100000
+                sk = str(int(sk / 100000))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 1000000000:
+                print 'devintas'
+                daugiklis = 1000000
+                sk = str(int(sk / 1000000))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk < 10000000000:
+                print 'desimtas'
+                daugiklis = 10000000
+                sk = str(int(sk / 10000000))
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
+            elif sk >= 10000000000:
+                popup = Popup(title='Eror:',
+                              content=Label(text="Too large number"),
+                              size_hint=(None, None), size=(200, 200))
+                popup.open()
+
+            ret_daugiklis = 'd' + str(daugiklis)
+            ret_s1 = 's1' + str(s1)
+            ret_s2 = 's2' + str(s2)
+            ret_s3 = 's3' + str(s3)
+            print ret_daugiklis, ' ', ret_s1, ' ', ret_s2
+            ret_list = list()
+            ret_list.append(ret_daugiklis)
+            ret_list.append(ret_s1)
+            ret_list.append(ret_s2)
+            ret_list.append(ret_s3)
+            te = ' '.join(ret_list)
+            print te
             return te
 
     def s1_color(*args):
@@ -227,9 +345,27 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         for arg in args:
             arglst.append(arg)
         tarp = arglst[1]
-        visiTrys = tarp.split()
-        juost_2 = visiTrys[2]
+        visi = tarp.split()
+        juost_2 = visi[2]
         reiksme = str(juost_2[2:])
+        print reiksme, ' juosta 2'
+        colors = {'0': (0, 0, 0, 1), '1': (.4, .2, 0, 1), '2': (1, 0, 0, 1), '3': (1, .5, 0, 1), '4': (1, 1, 0, 1),
+                  '5': (0, .6, 0, 1), '6': (0, 0, 1, 1), '7': (.4, 0, .4, 1), '8': (1, 1, 1, .5), '9': (1, 1, 1, 1)}
+        for key, value in colors.iteritems():
+            if key == reiksme:
+                backgroundColor = value
+        print colors
+        print backgroundColor
+        return backgroundColor
+
+    def s3_color(*args):
+        arglst = list()
+        for arg in args:
+            arglst.append(arg)
+        tarp = arglst[1]
+        visi = tarp.split()
+        juost_3 = visi[3]
+        reiksme = str(juost_3[2:])
         print reiksme, ' juosta 2'
         colors = {'0': (0, 0, 0, 1), '1': (.4, .2, 0, 1), '2': (1, 0, 0, 1), '3': (1, .5, 0, 1), '4': (1, 1, 0, 1),
                   '5': (0, .6, 0, 1), '6': (0, 0, 1, 1), '7': (.4, 0, .4, 1), '8': (1, 1, 1, .5), '9': (1, 1, 1, 1)}
@@ -259,9 +395,9 @@ class Tabbedpanel(TabbedPanel, GridLayout):
         print backgroundColor
         return backgroundColor
 
-    # ------------------3-tabas------------
+    # --------------------------------------3-tabas-------------------------------------
 
-    def inp_testing(*args):
+    def inp_testing(*args):  #funkcija naudojama 3 ir 4 tabu input tikrinimui
         lst = list()
 
         for arg in args:
@@ -269,9 +405,9 @@ class Tabbedpanel(TabbedPanel, GridLayout):
 
         test = lst[1]
         try:
-            x = int(test)
+            x = float(test)
         except:
-            if test is not int and test != '':
+            if test is not float and test != '':
                 popup = Popup(title='Eror:',
                               content=Label(text="Enter only numbers"),
                               size_hint=(None, None), size=(200, 200))
@@ -291,7 +427,7 @@ class Tabbedpanel(TabbedPanel, GridLayout):
             rez = str(vout) + "V"
         return rez
 
-        # ---------------4-tabas----------------
+    # -------------------------------------------4-tabas--------------------------------------------
 
     def lm(*args):
         lst = list()
@@ -310,21 +446,6 @@ class Tabbedpanel(TabbedPanel, GridLayout):
 class ResistanceCalculatorApp(App):
     def build(self):
         return Tabbedpanel()
-
-    '''def dictionaries(self):
-        colortabledigits = {"Black": "0", "Brown": "1", "Red": "2", "Orange": "3", "Yellow": "4", "Green": "5",
-                            "Blue": "6", "Violet": "7", "Grey": "8", "White": "9"}  # 4BandCode pirmos dvi juosteles,
-        # 5 ir 6 bandCode - pirmos trys juosteles
-        colortablemultiplier = {"Silver1": 0.01, "Golden1": 0.1, "Black1": 1, "Brown1": 10, "Red1": 100,
-                                "Orange1": 1000,
-                                "Yellow1": 10000, "Green1": 100000, "Blue1": 1000000, "Violet1": 10000000}  # Daugiklis,
-        # 4 BandCode trecia juostele, 5 ir 6 BandCode - ketvirta juostele
-
-        colortabletolerance = {"Silver2": "10%", "Golden2": "5%", "Brown2": "1%", "Red2": "2%", "Green2": "0.5%",
-                               "Blue2": "0.25%", "Violet2": "0.1%", "Grey2": "0.05%"}  # 4j. -4 BC, 5j. - 5,5BC
-
-        colortabletemp = {"Brown3": "100 ppm", "Red3": "50 ppm", "Orange3": "15 ppm", "Yellow": "25 ppm"}
-        # tik 6BandCodre 6j.'''
 
 
 if __name__ == '__main__':
