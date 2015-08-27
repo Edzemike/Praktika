@@ -1,11 +1,11 @@
 #: import FloatLayout kivy.uix.floatlayout.FloatLayout
 
-<Mygtukas@Button>:
+<Mygtukas@Button>:  # visi "Mygtukai turės tokius nustatymusm kaip čia aprašyta
     font_size: '20sp'
     color: 1, 1, 1, .8
     size_hint: 0.2, 0.1
 
-<MygtukasV@Button>:
+<MygtukasV@Button>:  # MygtukasV bendri nustatymai
     color: 0, 1, 0, 1
     size_hint: 0.04, .19
     background_color: 0, .7, 0, .3
@@ -583,7 +583,7 @@
         on_release: VarzMyg_C3.background_color = (0, .7, 0, .3)
         on_release: VarzMyg_C4.background_color = (0, .7, 0, .3)
         on_release: VarzMyg_C5.background_color = (0, .7, 0, .3)
-        on_release: inp_4band.text = ''
+        on_release: inp.text = ''
         text: 'Colors'
         canvas:
             Color:
