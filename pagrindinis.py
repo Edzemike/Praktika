@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'Edita'
 
 from kivy.lang import Builder
@@ -9,11 +10,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 
-
-Builder.load_file("pagr.kv")
-
-#lbl1 = Label(text='', size_hint=(.15, .1), pos_hint={"x": .28, "y": .76}, background_color=(1, 1, 1, .3))
-#text1 = TextInput(text='', multiline=False, size_hint=(.15, .06), pos_hint={"x": .02, "y": .7})
+Builder.load_file("pagr.kv")  # Įkeliamas kivy tekstinis failas su programos išvaizdos aprašymais
 
 
 class Tabbedpanel(TabbedPanel):
@@ -96,15 +93,19 @@ class Tabbedpanel(TabbedPanel):
 
         return sk'''
 
-    def pirma_juostele(*args):
-        lst = list()
-        for arg in args:
-            lst.append(arg)
-        n1 = str(lst[1])
-        print n1
-        return n1
+    # ------------------------------- Pirmo tabo (skirtuko) funkcijos -------------------------------
 
-    def antra_juostele(*args):
+    def pirma_juostele(*args):  # funkcija paima  mygtuko  iš iššokančio lango(atidaromo paspaudus
+        #  pirma varžo juostelę)  grąžinamus duomenis
+        lst = list()  # sukuriamas tuščias sąrašas
+        for arg in args:
+            lst.append(arg)  # for cikle gauti argumentai sudedami i sąrašą
+        n1 = str(lst[1])  # paimama reikalinga reikšmė, nulinis sąrašo elemntas yra adresas,
+        #  skaičiavimui jis nebus reikalingas
+        return n1  # grąžinama reikšmė bus panaudota pagr.kv faile
+
+    def antra_juostele(*args):  # funkcija analogiška funkcijai pirma_juostele, iškyrus, duomenys imami iš
+        # anrtos juostelės iššokancio lango mygtukų
         lst = list()
         for arg in args:
             lst.append(arg)
@@ -112,7 +113,7 @@ class Tabbedpanel(TabbedPanel):
         print n2
         return n2
 
-    def trecia_juostele(*args):
+    def trecia_juostele(*args):  # funkcija analogiška funkcijai pirma_juostele, trečios juostelės duomenys
         lst = list()
         for arg in args:
             lst.append(arg)
@@ -120,7 +121,7 @@ class Tabbedpanel(TabbedPanel):
         print n3
         return n3
 
-    def ketvirta_juostele(*args):
+    def ketvirta_juostele(*args):  # analogiška f-jai pirma_juostele, ketvirtos juostelės duomenys - daugiklis.
         lst = list()
         for arg in args:
             lst.append(arg)
@@ -128,23 +129,24 @@ class Tabbedpanel(TabbedPanel):
         print n4
         return n4
 
-    def rezultatas_4band(*args):
+    def rezultatas_4band(*args):  # f-ja apskaičiuoja varžo su 4 juost. varžą. Arg. persiųsti iš etiketės (id: tarpine)
         lst = list()
         for arg in args:
             lst.append(arg)
-        skaicius = lst[1]
-        n1 = skaicius[0]
-        n2 = skaicius[1]
-        n4 = float(skaicius[2:])
-        n12 = int(n1 + n2)
-        rez = n12 * n4
-        if rez < 10:
-            rez = str(rez)
+        skaicius = lst[1]  # iš arg. sąrašo paimama str tipo reikšmė ir priskiriama kintamąjam skaicius
+        n1 = skaicius[0]   # iš kint. skaicius gaunamas pirmas rezultato skaičiavimo skaitmuo
+        n2 = skaicius[1]   # 2-ras skaitmuo
+        n4 = float(skaicius[2:])  # daugiklis
+        n12 = int(n1 + n2)  # pirmas ir antras skaitmuo sujungiamas į vieną int tipo kintamąjį
+        rez = n12 * n4  # apskaičiuojamas rezultatas
+        if rez < 10:  # apsisaugoma, kad jei rezultatas < 10 į atsakymo laukelį būtų siunčiamas trupmeninis rezultatas
+            rez = str(rez)  # etiketės (Label) priima tik str tipo kintamuosius
         else:
-            rez = str(int(rez))
-        return rez
+            rez = str(int(rez))  # jei rez dviženklis ar didesnis, rezultatas siunčiamas kaip sveikasis skaičius.
+        return rez  # grąžinama reikmė bus išspausdinta etiketėje (id: resistance)
 
-    def rezultatas_56band(*args):
+    def rezultatas_56band(*args):  # analogiška f-jai rezultatas_4band, tik rezultatas skaičiuojamas iš
+        #  4 juostelių duomenų, ne trijų.
         lst = list()
         for arg in args:
             lst.append(arg)
@@ -153,7 +155,7 @@ class Tabbedpanel(TabbedPanel):
         n2 = skaicius[1]
         n3 = skaicius[2]
         n4 = float(skaicius[3:])
-        n123 = int(n1 + n2+n3)
+        n123 = int(n1 + n2 + n3)
         rez = n123 * n4
         if rez < 100:
             rez = str(rez)
@@ -161,98 +163,88 @@ class Tabbedpanel(TabbedPanel):
             rez = str(int(rez))
         return rez
 
-    # --------------------------------2-tabas------------------------------
+    # -------------------------------------- 2 skirtuko funkcijos---------------------------------------
 
     def values_4band(*args):
         lst = list()
         for arg in args:
-            lst.append(arg)
+            lst.append(arg)  # paimamas TextInput tekstas (id: inp)
 
         if lst[1] != '':
-            if lst[1].startswith('-'):
-                popup = Popup(title='Eror:',
+            if lst[1].startswith('-'):  # tikrinama, ar vartotojas bando įvesti neigiamą reikšmę. jei taip,
+                popup = Popup(title='Eror:',  # iššoksta pranešimas, kad varža negali būti neigiama.
                               content=Label(text="Resistance can not\nbe negative"),
-                              size_hint=(None, None), size=(200, 200))
+                              size_hint=(None, None), size=(200, 200))  # nustatomas pranešimo lango dydis
                 popup.open()
-            sk = float(lst[1])
-            if sk < 1:
-                print 'pirmas'
+            sk = float(lst[1])  # gautas argumentas paverčiamas į float (svarbu, jei įvestas skaičius buvo float.
+            if sk < 1:  # pagal skaičiaus dydį nustatomas jo daugiklis ir sk išskaidoms skaitmenimis
                 daugiklis = 0.01
                 sk = str(int(sk * 100))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 10:
-                print 'antras'
                 daugiklis = 0.1
                 sk = str(int(sk * 10))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 100:
-                print 'trecias'
                 daugiklis = 1
                 sk = str(int(sk))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 1000:
-                print 'ketvirtas'
                 daugiklis = 10
                 sk = str(int(sk / 10))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 10000:
-                print 'penktas'
                 daugiklis = 100
                 sk = str(int(sk / 100))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 100000:
-                print 'sestas'
                 daugiklis = 1000
                 sk = str(int(sk / 1000))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 1000000:
-                print 'septintas'
                 daugiklis = 10000
                 sk = str(int(sk / 10000))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 10000000:
-                print 'astuntas'
                 daugiklis = 100000
                 sk = str(int(sk / 100000))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 100000000:
-                print 'devintas'
                 daugiklis = 1000000
                 sk = str(int(sk / 1000000))
                 s1 = sk[0]
                 s2 = sk[1]
             elif sk < 1000000000:
-                print 'desimtas'
                 daugiklis = 10000000
                 sk = str(int(sk / 10000000))
                 s1 = sk[0]
                 s2 = sk[1]
-            elif sk >= 1000000000:
+            elif sk >= 1000000000:  # Jei skaičius viršija leistiną, iššoksta pranešimas "per didelis skaičius"
                 popup = Popup(title='Eror:',
                               content=Label(text="Too large number"),
                               size_hint=(None, None), size=(200, 200))
                 popup.open()
-            ret_daugiklis = 'd' + str(daugiklis)
+            ret_daugiklis = 'd' + str(daugiklis)  # suformuojami str tipo kintamieji su identifikacija pradžioje
             ret_s1 = 's1' + str(s1)
             ret_s2 = 's2' + str(s2)
-            print ret_daugiklis, ' ', ret_s1, ' ', ret_s2
             ret_list = list()
-            ret_list.append(ret_daugiklis)
+            ret_list.append(ret_daugiklis)  # kintamieji sudedami į sąrašą
             ret_list.append(ret_s1)
             ret_list.append(ret_s2)
-            te = ' '.join(ret_list)
-            print te
-            return te  #
+            te = ' '.join(ret_list)  # sąrašas paverčiamas viena simbolių eilute
+            return te  # simbolių eilutė grąžinama ir panaudojama už programos ribų esančioje tarpinėje
+            #  etiketėje. id: lbl
 
-    def values_5band(*args):
+    def values_5band(*args):  # analogiška f-jai values_4band, skiriasi naudojamų skaitmenų skaičius,
+        # atsakymas formuojamas 4 juostelėms, ne trims
         lst = list()
         for arg in args:
             lst.append(arg)
@@ -264,21 +256,15 @@ class Tabbedpanel(TabbedPanel):
                 popup.open()
             sk = float(lst[1])
 
-            def priskyrimai(sk, s1=0, s2=0, s3=0):
-                s1 = sk[0]
-                s2 = sk[1]
-                s3 = sk[2]
-                return s1, s2, s3
-
             if sk < 0.1:
                 daugiklis = 0.01
-                sk = str(int(sk*100))
+                sk = str(int(sk * 100))
                 s1 = 0,
                 s2 = 0,
                 s3 = sk[0]
             if sk < 1:
                 daugiklis = 0.01
-                sk = str(int(sk*100))
+                sk = str(int(sk * 100))
                 s1 = 0
                 s2 = sk[0]
                 s3 = sk[1]
@@ -328,7 +314,9 @@ class Tabbedpanel(TabbedPanel):
                 print 'septintas'
                 daugiklis = 10000
                 sk = str(int(sk / 10000))
-                priskyrimai(sk)
+                s1 = sk[0]
+                s2 = sk[1]
+                s3 = sk[2]
             elif sk < 100000000:
                 print 'astuntas'
                 daugiklis = 100000
@@ -350,7 +338,7 @@ class Tabbedpanel(TabbedPanel):
                 s1 = sk[0]
                 s2 = sk[1]
                 s3 = sk[2]
-            elif sk >= 10000000000:
+            elif sk >= 10000000000:  # leistina varža didesnė nei 4 juostelių kode.
                 popup = Popup(title='Eror:',
                               content=Label(text="Too large number"),
                               size_hint=(None, None), size=(200, 200))
@@ -370,7 +358,7 @@ class Tabbedpanel(TabbedPanel):
             print te
             return te
 
-    def s1_color(*args):
+    def s1_color(*args):  #surandama ir grąžinama pirmos juostelės spalva
         arglst = list()
         for arg in args:
             arglst.append(arg)
@@ -448,7 +436,7 @@ class Tabbedpanel(TabbedPanel):
 
     # --------------------------------------3-tabas-------------------------------------
 
-    def inp_testing(*args):  #funkcija naudojama 3 ir 4 tabu input tikrinimui
+    def inp_testing(*args):  # funkcija naudojama 3 ir 4 tabu input tikrinimui
         lst = list()
 
         for arg in args:
